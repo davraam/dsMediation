@@ -39,28 +39,30 @@ mediationTestDS <- function(mv,iv,dv){
     warning("the number of records might be too small")
   }
   
-  tmp = summary(stats::lm(mv~iv));
-  a = tmp$coef[2,1];sa=tmp$coef[2,2];
-  tmp = summary(stats::lm(dv~mv+iv));
-  b = tmp$coef[2,1];sb=tmp$coef[2,2];
-  tmp1 = b^2*sa^2+a^2*sb^2
-  tmp2 = sa^2*sb^2
-  zsob = a*b/sqrt(tmp1);
-  psob = stats::pnorm(-abs(zsob))*2;
-  zaro = a*b/sqrt(tmp1+tmp2);
-  paro = stats::pnorm(-abs(zaro))*2;
-  if(tmp1>tmp2){
-    zgm = a*b/sqrt(tmp1-tmp2)
-    pgm = stats::pnorm(-abs(zgm))*2;
+  tmp <- summary(stats::lm(mv~iv))
+  a <- tmp$coef[2,1]
+  sa <- tmp$coef[2,2]
+  tmp <- summary(stats::lm(dv~mv+iv))
+  b <- tmp$coef[2,1];sb=tmp$coef[2,2]
+  tmp1 <- b^2*sa^2+a^2*sb^2
+  tmp2 <- sa^2*sb^2
+  zsob <- a*b/sqrt(tmp1)
+  psob <- stats::pnorm(-abs(zsob))*2
+  zaro <- a*b/sqrt(tmp1+tmp2)
+  paro <- stats::pnorm(-abs(zaro))*2
+  if(tmp1 > tmp2){
+    zgm <- a*b/sqrt(tmp1-tmp2)
+    pgm <- stats::pnorm(-abs(zgm))*2
   }else{
-    zgm=NA
-    pgm=NA;
+    zgm <- NA
+    pgm <- NA
   }
-  p.value=c(psob,paro,pgm)
-  z.value = c(zsob,zaro,zgm)
-  out = data.frame(rbind(z.value,p.value));
-  names(out)=c("Sobel","Aroian","Goodman")
-  out
+  p.value <- c(psob, paro, pgm)
+  z.value <- c(zsob, zaro, zgm)
+  out <- data.frame(rbind(z.value,p.value));
+  names(out) <- c("Sobel","Aroian","Goodman")
+  return(out)
+  
 }
 # AGGREGATE FUNCTION
 # mediationTestDS
