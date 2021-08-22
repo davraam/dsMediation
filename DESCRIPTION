@@ -22,7 +22,8 @@ AggregateMethods:
     multimedDS,
     neLhtDS,
     neModelDS,
-    regmedintDS
+    regmedintDS,
+    test.TMintDS
 AssignMethods:
     neImputeDS,
     neWeightDS

@@ -18,7 +18,7 @@ test.TMintDS <- function(x, conf.level){
   
   x <- eval(parse(text=x), envir = parent.frame())
 
-  if(!is.null(conf.level)){
+  if(is.null(conf.level)){
     conf.level <- x$conf.level
   }
   
