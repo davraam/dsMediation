@@ -17,16 +17,16 @@
 #' @param eventvar a character vector of length 1. Only required for survival outcome
 #' regression models. Note that the coding is 1 for event and 0 for censoring, 
 #' following the R survival package convention.
-#' #@param a0 a numeric vector of length 1. Reference level of treatment variable that
-#' #is considered "untreated" or "unexposed".
-#' #@param a1 a numeric vector of length 1.
-#' #@param m_cde a numeric vector of length 1. Mediator level at which controlled direct
-#' #effect is evaluated at.
-#' #@param c_cond a numeric vector of the same length as cvar. Covariate vector at which 
-#' #conditional effects are evaluated at.
-#' #@param mreg a character vector of length 1. Mediator regression type: "linear" or "logistic".
-#' #@param yreg a character vector of length 1. Outcome regression type: "linear", "logistic", 
-#' #"loglinear", "poisson", "negbin", "survCox", "survAFT_exp", or "survAFT_weibull".
+#' @param a0 a numeric vector of length 1. Reference level of treatment variable that
+#' is considered "untreated" or "unexposed".
+#' @param a1 a numeric vector of length 1.
+#' @param m_cde a numeric vector of length 1. Mediator level at which controlled direct
+#' effect is evaluated at.
+#' @param c_cond a numeric vector of the same length as cvar. Covariate vector at which 
+#' conditional effects are evaluated at.
+#' @param mreg a character vector of length 1. Mediator regression type: "linear" or "logistic".
+#' @param yreg a character vector of length 1. Outcome regression type: "linear", "logistic", 
+#' "loglinear", "poisson", "negbin", "survCox", "survAFT_exp", or "survAFT_weibull".
 #' @param interaction a logical vector of length 1. Default to TRUE. Whether to include a 
 #' mediator-treatment interaction term in the outcome regression model.
 #' @param casecontrol a logical vector of length 1. Default to FALSE. Whether data comes from
@@ -37,18 +37,26 @@
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
-regmedintDS <- function(data, yvar, avar, mvar, cvar, eventvar,
+regmedintDS <- function(data, yvar, avar, mvar, cvar, eventvar, a0, a1, m_cde, c_cond, mreg, yreg,
                         interaction = TRUE, casecontrol = FALSE, na_omit = FALSE){
   
   data <- eval(parse(text=data), envir = parent.frame())
   
-  #cvar <- unlist(strsplit(cvar.transmit, split=","))
-
-  regmedint.out <- regmedint::regmedint(data=data, yvar=yvar, avar=avar, mvar=mvar, cvar=cvar, eventvar=eventvar,
-                                        a0=0, a1=1, m_cde = 1, c_cond = 0.5, mreg = "logistic", yreg = "survAFT_weibull",
-                                        interaction = interaction, casecontrol = casecontrol, na_omit=na_omit)
+  if(!is.null(cvar)){
+    cvar <- unlist(strsplit(cvar, split=","))
+  }else{
+    cvar <- cvar
+  } 
+  
+  regmedint.out <- regmedint::regmedint(data = data, yvar = yvar, avar = avar, mvar = mvar, 
+                                        cvar = cvar, eventvar = eventvar, a0 = a0, a1 = a1, 
+                                        m_cde = m_cde, c_cond = c_cond, mreg = mreg, yreg = yreg,
+                                        interaction = interaction, casecontrol = casecontrol, 
+                                        na_omit = na_omit)
   
   out <- summary(regmedint.out)
   return(out)
   
 }
+# AGGREGATE FUNCTION
+# regmedintDS
