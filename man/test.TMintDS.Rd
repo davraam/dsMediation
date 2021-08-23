@@ -22,7 +22,7 @@ This function is similar to R function \code{test.TMint} from the
 \code{mediation} package.
 }
 \details{
-The function 'test.TMint' is used to test whether the average causal mediation
+The function 'test.TMintDS' is used to test whether the average causal mediation
 effects and direct effects are significantly different between the treatment and control
 conditions.
 }

@@ -29,20 +29,17 @@
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
-multimedDS <- function(outcome, med.main, med.alt.transmit, treat, covariates.transmit, 
-                       data, sims = 1000, conf.level, seed){
+multimedDS <- function(outcome, med.main, med.alt.transmit, treat, 
+                       covariates.transmit, data, sims = 1000, conf.level, seed){
   
   data <- eval(parse(text=data), envir = parent.frame())
   
-  if(!is.null(med.alt.transmit)){
-    med.alt <- unlist(strsplit(med.alt.transmit, split=","))
-  }else{
-    med.alt <- NULL
-  }  
+  med.alt <- unlist(strsplit(med.alt.transmit, split=","))
+
   if(!is.null(covariates.transmit)){
     covariates <- unlist(strsplit(covariates.transmit, split=","))
   }else{
-    covariates <- NULL
+    covariates <- covariates.transmit
   }  
   
   if(!is.null(seed)){
@@ -50,7 +47,7 @@ multimedDS <- function(outcome, med.main, med.alt.transmit, treat, covariates.tr
   }
 
   m.med.out <- mediation::multimed(outcome = outcome, med.main = med.main, med.alt = med.alt, treat = treat, 
-                                   covariates = covariates, experiment = NULL, data = data, design = "single",
+                                   covariates = covariates, experiment = NULL, data = data, design = c("single", "parallel"),
                                    sims = sims, R2.by = 0.01, conf.level = conf.level, weight = NULL)
   
   out <- summary(m.med.out)
