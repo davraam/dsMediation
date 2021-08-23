@@ -2,7 +2,7 @@
 #' @title Significance Test for Treatment-Mediator Interaction in Causal Mediation Analysis
 #' @description This function is similar to R function \code{test.TMint} from the 
 #' \code{mediation} package.
-#' @details The function 'test.TMint' is used to test whether the average causal mediation
+#' @details The function 'test.TMintDS' is used to test whether the average causal mediation
 #' effects and direct effects are significantly different between the treatment and control
 #' conditions.
 #' @param x the name of the output of the \code{ds.mediate} function saved at each server.
