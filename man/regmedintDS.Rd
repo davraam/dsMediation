@@ -11,6 +11,12 @@ regmedintDS(
   mvar,
   cvar,
   eventvar,
+  a0,
+  a1,
+  m_cde,
+  c_cond,
+  mreg,
+  yreg,
   interaction = TRUE,
   casecontrol = FALSE,
   na_omit = FALSE
@@ -34,17 +40,23 @@ to account for the common cause structure (confounding) between mvar and yvar.}
 
 \item{eventvar}{a character vector of length 1. Only required for survival outcome
 regression models. Note that the coding is 1 for event and 0 for censoring, 
-following the R survival package convention.
-#@param a0 a numeric vector of length 1. Reference level of treatment variable that
-#is considered "untreated" or "unexposed".
-#@param a1 a numeric vector of length 1.
-#@param m_cde a numeric vector of length 1. Mediator level at which controlled direct
-#effect is evaluated at.
-#@param c_cond a numeric vector of the same length as cvar. Covariate vector at which 
-#conditional effects are evaluated at.
-#@param mreg a character vector of length 1. Mediator regression type: "linear" or "logistic".
-#@param yreg a character vector of length 1. Outcome regression type: "linear", "logistic", 
-#"loglinear", "poisson", "negbin", "survCox", "survAFT_exp", or "survAFT_weibull".}
+following the R survival package convention.}
+
+\item{a0}{a numeric vector of length 1. Reference level of treatment variable that
+is considered "untreated" or "unexposed".}
+
+\item{a1}{a numeric vector of length 1.}
+
+\item{m_cde}{a numeric vector of length 1. Mediator level at which controlled direct
+effect is evaluated at.}
+
+\item{c_cond}{a numeric vector of the same length as cvar. Covariate vector at which 
+conditional effects are evaluated at.}
+
+\item{mreg}{a character vector of length 1. Mediator regression type: "linear" or "logistic".}
+
+\item{yreg}{a character vector of length 1. Outcome regression type: "linear", "logistic", 
+"loglinear", "poisson", "negbin", "survCox", "survAFT_exp", or "survAFT_weibull".}
 
 \item{interaction}{a logical vector of length 1. Default to TRUE. Whether to include a 
 mediator-treatment interaction term in the outcome regression model.}
