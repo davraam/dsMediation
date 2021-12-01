@@ -27,4 +27,4 @@ AggregateMethods:
 AssignMethods:
     neImputeDS,
     neWeightDS
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
