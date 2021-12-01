@@ -3,6 +3,7 @@
 export(mediateDS)
 export(mediationTestDS)
 export(multimedDS)
+export(neEffdecompDS)
 export(neImputeDS)
 export(neLhtDS)
 export(neModelDS)
