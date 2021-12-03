@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fit a natural effect model — neModelDS • dsMediation</title>
+<title>Linear hypotheses for natural effect models — neEffdecompDS • dsMediation</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Fit a natural effect model — neModelDS" />
-<meta property="og:description" content="This function is similar to R function neModel from the
-This function is similar to R function neModel from the 
+<meta property="og:title" content="Linear hypotheses for natural effect models — neEffdecompDS" />
+<meta property="og:description" content="This function is similar to R function neEffdecomp from the 
 medflex package." />
 
 
@@ -105,61 +104,36 @@ medflex package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fit a natural effect model</h1>
+    <h1>Linear hypotheses for natural effect models</h1>
     
-    <div class="hidden name"><code>neModelDS.Rd</code></div>
+    <div class="hidden name"><code>neEffdecompDS.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function is similar to R function <code>neModel</code> from the</p>
-<p>This function is similar to R function <code>neModel</code> from the 
+    <p>This function is similar to R function <code>neEffdecomp</code> from the 
 <code>medflex</code> package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>neModelDS</span><span class='op'>(</span><span class='va'>formula</span>, <span class='va'>family</span>, <span class='va'>expData</span>, <span class='va'>se</span>, <span class='va'>nBoot</span>, <span class='va'>newobj</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>neEffdecompDS</span><span class='op'>(</span><span class='va'>model.name</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>formula</th>
-      <td><p>a formula object providing a symbolic description of the 
-natural effect model.</p></td>
-    </tr>
-    <tr>
-      <th>family</th>
-      <td><p>aa description of the error distribution and link function to be
-used in the model. For glm this can be a character string naming a family 
-function, a family function or the result of a call to a family function. 
-For glm.fit only the third option is supported.</p></td>
-    </tr>
-    <tr>
-      <th>expData</th>
-      <td><p>the expanded dataset (of class "expData").</p></td>
-    </tr>
-    <tr>
-      <th>se</th>
-      <td><p>character string indicating the type of standard errors to be calculated.
-The default type is based on the bootstrap.</p></td>
-    </tr>
-    <tr>
-      <th>nBoot</th>
-      <td><p>number of bootstrap replicates.</p></td>
-    </tr>
-    <tr>
-      <th>newobj</th>
-      <td><p>a character string that provides the name for the output object
-that is stored on the data servers. Default <code>neModel.out</code>.</p></td>
+      <th>model.name</th>
+      <td><p>the name of a fitted natural effect model object. This is the
+object saved on the server-side by the <code>ds.neModel</code> function.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a summary table of the object of class 'neModel'.</p>
+    <p>a summary table of the object of class c("neLht", "glht") (see glht). The object
+additionally inherits from class "neEffdecomp".</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The function 'neModelDS' is used to fit a natural effect model on the
-expanded dataset.</p>
+    <p>The function <code>ds.neEffdecomp</code> automatically extracts relevant causal
+parameter estimates from a natural effect model.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Demetris Avraam, for DataSHIELD Development Team</p>
