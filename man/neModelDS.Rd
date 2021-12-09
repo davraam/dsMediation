@@ -26,7 +26,8 @@ The default type is based on the bootstrap.}
 that is stored on the data servers. Default \code{neModel.out}.}
 }
 \value{
-a summary table of the object of class 'neModel'.
+a list with (i) the summary table of the object of class 'neModel' and 
+(ii) the variance-covariance matrix (if se = "robust").
 }
 \description{
 This function is similar to R function \code{neModel} from the
