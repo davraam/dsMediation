@@ -35,7 +35,7 @@ neModelDS <- function(formula, family, expData, se, nBoot, newobj){
                                   nBoot=nBoot, parallel="no", ncpus=1, progress=FALSE)
   
   if (se == "robust"){
-    out <- list(c(summary(neModel.out), neModel.out$vcov))
+    out <- list(summary(neModel.out), neModel.out$vcov)
   }
   
   # save the outcome on the server-side
