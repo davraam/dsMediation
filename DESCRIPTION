@@ -1,7 +1,7 @@
 Package: dsMediation
 Title: DataSHIELD server site mediation functions
 Description: DataSHIELD server site mediation functions.
-Version: 0.0.2
+Version: 0.0.3
 Author: DataSHIELD Developers <datashield@newcastle.ac.uk>
 Maintainer: DataSHIELD Developers <datashield@newcastle.ac.uk>
 License: GPL-3
@@ -9,10 +9,6 @@ Depends:
     R (>= 3.5.0)
 Imports:
     stats,
-    SuppDists,
-    speedglm,
-    survival,
-    MASS,
     medflex,
     regmedint,
     mediation
@@ -28,4 +24,5 @@ AggregateMethods:
 AssignMethods:
     neImputeDS,
     neWeightDS
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
+Encoding: UTF-8
