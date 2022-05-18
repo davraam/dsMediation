@@ -4,11 +4,13 @@
 \alias{neLhtDS}
 \title{Linear hypotheses for natural effect models}
 \usage{
-neLhtDS(model.name)
+neLhtDS(model.name, linfct)
 }
 \arguments{
 \item{model.name}{a fitted natural effect model object. This is the object saved
 on the server-side by the \code{ds.neModel} function.}
+
+\item{linfct}{a specification of the linear hypothesis to be tested.}
 }
 \value{
 a summary table of the object of class c("neLht", "glht") (see glht).
