@@ -37,18 +37,17 @@
 #' the estimates to measure the odds ratio incase of a logistic regression model 
 #' @return a summary table of the object of class 'multimed'.
 #' @author Demetris Avraam, for DataSHIELD Development Team
+#' @import regmedint
 #' @export
 #'
 regmedintDS <- function(data, yvar, avar, mvar, cvar, eventvar, a0, a1, m_cde, c_cond, mreg, yreg,
                         interaction = TRUE, casecontrol = FALSE, na_omit = FALSE, exponentiate = FALSE){
   
-  library(regmedint)
-  
   data <- eval(parse(text=data), envir = parent.frame())
   
   if(!is.null(cvar)){
     cvar <- unlist(strsplit(cvar, split=","))
-  } 
+  }
   
   if(!is.null(c_cond)){
     c_cond <- as.numeric(unlist(strsplit(c_cond, split=",")))
