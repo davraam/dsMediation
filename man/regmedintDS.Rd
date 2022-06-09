@@ -19,7 +19,8 @@ regmedintDS(
   yreg,
   interaction = TRUE,
   casecontrol = FALSE,
-  na_omit = FALSE
+  na_omit = FALSE,
+  exponentiate = FALSE
 )
 }
 \arguments{
@@ -66,6 +67,9 @@ a case-control study.}
 
 \item{na_omit}{a logical vector of length 1. Default to FALSE. Whether to use na.omit() function
 in stats package to remove NAs in columns of interest before fitting the models.}
+
+\item{exponentiate}{a logical vector of length 1. Default to FALSE. Whether to exponentiate
+the estimates to measure the odds ratio incase of a logistic regression model}
 }
 \value{
 a summary table of the object of class 'multimed'.
