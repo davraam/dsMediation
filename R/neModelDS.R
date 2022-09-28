@@ -19,7 +19,8 @@
 #' @param nBoot number of bootstrap replicates.
 #' @param newobj a character string that provides the name for the output object
 #' that is stored on the data servers. Default \code{neModel.out}. 
-#' @return a summary table of the object of class 'neModel'.
+#' @return a list with (i) the summary table of the object of class 'neModel' and 
+#' (ii) the variance-covariance matrix (if se = "robust").
 #' @author Demetris Avraam, for DataSHIELD Development Team
 #' @export
 #'
@@ -33,7 +34,9 @@ neModelDS <- function(formula, family, expData, se, nBoot, newobj){
   neModel.out <- medflex::neModel(formula=formula, family=family, expData=expData, se=se, 
                                   nBoot=nBoot, parallel="no", ncpus=1, progress=FALSE)
   
-  out <- summary(neModel.out)
+  if (se == "robust"){
+    out <- list(summary(neModel.out), neModel.out$vcov)
+  }
   
   # save the outcome on the server-side
   base::assign(newobj, neModel.out, envir = parent.frame())

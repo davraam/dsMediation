@@ -33,28 +33,41 @@
 #' a case-control study.
 #' @param na_omit a logical vector of length 1. Default to FALSE. Whether to use na.omit() function
 #' in stats package to remove NAs in columns of interest before fitting the models.
+#' @param exponentiate a logical vector of length 1. Default to FALSE. Whether to exponentiate
+#' the estimates to measure the odds ratio incase of a logistic regression model 
 #' @return a summary table of the object of class 'multimed'.
 #' @author Demetris Avraam, for DataSHIELD Development Team
+#' @import regmedint
 #' @export
 #'
 regmedintDS <- function(data, yvar, avar, mvar, cvar, eventvar, a0, a1, m_cde, c_cond, mreg, yreg,
-                        interaction = TRUE, casecontrol = FALSE, na_omit = FALSE){
+                        interaction = TRUE, casecontrol = FALSE, na_omit = FALSE, exponentiate = FALSE){
   
   data <- eval(parse(text=data), envir = parent.frame())
   
   if(!is.null(cvar)){
     cvar <- unlist(strsplit(cvar, split=","))
-  }else{
-    cvar <- cvar
-  } 
+  }
   
-  regmedint.out <- regmedint::regmedint(data = data, yvar = yvar, avar = avar, mvar = mvar, 
+  if(!is.null(c_cond)){
+    c_cond <- as.numeric(unlist(strsplit(c_cond, split=",")))
+  }
+  
+  if(!is.null(cvar)){
+    regmedint.out <- regmedint::regmedint(data = data, yvar = yvar, avar = avar, mvar = mvar, 
                                         cvar = cvar, eventvar = eventvar, a0 = a0, a1 = a1, 
                                         m_cde = m_cde, c_cond = c_cond, mreg = mreg, yreg = yreg,
                                         interaction = interaction, casecontrol = casecontrol, 
                                         na_omit = na_omit)
+  }else{
+    regmedint.out <- regmedint::regmedint(data = data, yvar = yvar, avar = avar, mvar = mvar, 
+                                          cvar = c(), eventvar = eventvar, a0 = a0, a1 = a1, 
+                                          m_cde = m_cde, c_cond = c(), mreg = mreg, yreg = yreg, 
+                                          interaction = interaction, casecontrol = casecontrol, 
+                                          na_omit = na_omit)    
+  }
   
-  out <- summary(regmedint.out)
+  out <- summary(regmedint.out, exponentiate = exponentiate)
   return(out)
   
 }
